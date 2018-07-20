@@ -1,0 +1,73 @@
+<header class="topBanner">
+  <div class="container">
+    <nav class="nav navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">
+            <span><i class="fa fa-recycle"></i> <strong> Free Recycling</strong></span>
+          </a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse" [collapse]="isCollapsed">
+          <ul class="nav navbar-nav">
+            <li>
+              <a [class.disabled]="!isAuthentication" [routerLink]="['']">State<span class="sr-only">(current)</span></a>
+            </li>
+            <li>
+              <a [class.disabled]="!isAuthentication" [routerLink]="['nearby']">Near By<span class="sr-only">(current)</span></a>
+            </li>
+            <li>
+              <a [class.disabled]="!isAuthentication" [routerLink]="['me']">My Donation<span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+          <ul class="nav nav navbar-right">
+            <li dropdown keyboardNav="true">
+              <ul class="nav navbar-nav">
+                <li *ngIf="isAuthentication">
+                  <a class="dropdown-toggle" role="button" aria-expanded="false" dropdownToggle>
+                    <i class="fa fa-user" aria-hidden="true"></i> {{LoginInfo.fullName}}
+                  </a>
+                </li>
+                <li *ngIf="isAuthentication">
+                  <a class="dropdown-toggle" role="button" aria-expanded="false" dropdownToggle (click)="logout()">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
+                  </a>
+                </li>
+                <li *ngIf="!isAuthentication">
+                  <a [routerLink]="['/login']" class="dropdown-toggle" role="button" aria-expanded="false" dropdownToggle>
+                    <i class="fa fa-sign-in" aria-hidden="true"></i> Log in
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="dropdown-menu" role="menu">
+                <li role="menuitem"><a [class.disabled]="!isAuthentication" class="dropdown-item" [routerLink]="['']">State<span class="sr-only">(current)</span></a></li>
+                <li role="menuitem">
+                  <a [class.disabled]="!isAuthentication" class="dropdown-item" [routerLink]="['nearby']">Near By<span class="sr-only">(current)</span></a>
+                </li>
+                <li role="menuitem"><a [class.disabled]="!isAuthentication" class="dropdown-item" [routerLink]="['me']" routerLinkActive="active">My Donation<span class="sr-only">(current)</span></a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<div class="appContent">
+  <div class="container">
+    <div class="slide-animation">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="container">Copyright © Thanh, Utku and Sunil MUM students. All rights reserved.
+  </div>
+</footer>

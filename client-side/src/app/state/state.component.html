@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="margin-left20 btn-group btn-breadcrumb">
+      <a (click)="onHomeBraidCumb()" class="btn btn-default"><i class="fa fa-home"></i></a>
+
+      <a *ngIf="braidCumb.state!==''" (click)="onStateBraidCumb()" class="btn btn-default">
+        <div>{{braidCumb.state}}</div>
+      </a>
+      <a *ngIf="braidCumb.city!==''" (click)="onCityBraidCumb()" class="btn btn-default">
+        <div>{{braidCumb.city}}</div>
+      </a>
+      <a *ngIf="braidCumb.item!==''" (click)="onItemBraidCumb()" class="btn btn-default">
+        <div>{{braidCumb.item}}</div>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <input *ngIf="iscity || isstate" type="text" placeholder="Enter your search terms" class="form-control searchBox" [(ngModel)]="filter" />
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <ul *ngIf="isstate" id="state">
+      <li *ngFor="let state of (states| filterArray : filter)">
+        <button class="btn btn-link" (click)="onStateClick(state)">{{state}}</button></li>
+    </ul>
+
+
+    <ul *ngIf="iscity" id="city">
+      <li *ngFor="let city of (cities | filterArray : filter)">
+        <button class="btn btn-link" (click)="onCityClick(city)">{{city}}</button></li>
+    </ul>
+  </div>
+  <div class="margin-left20" *ngIf="isitem">
+    <app-donation [Type]="1" [Location]="location"></app-donation>
+  </div>
+</div>

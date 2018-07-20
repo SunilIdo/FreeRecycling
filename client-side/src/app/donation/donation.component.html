@@ -1,0 +1,19 @@
+<div class="row">
+  <!--<a [routerLink]="['/donationdetails', donation._id]">-->
+  <div *ngFor="let donation of myDonations" class="col-sm-3 padding-top10 max-widthDonation">
+    <div class="card">
+      <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
+      <div class="avatar">
+        <img src="{{donation.imageUrl}}" alt="myImage">
+      </div>
+      <div class="content">
+        <p>{{donation.itemName|truncate}} <br> {{donation.email}}<br><span *ngIf="Type===2">{{donation.dis | number:0}} miles</span>
+        </p>
+        <div class="btn btn-group">
+          <button type="button" class="btn btn-info" [routerLink]="['/detail', donation._id]">View</button>
+          <button type="button" class="btn btn-default" *ngIf="enable(donation.email)" (click)="markAsDonated(donation._id)">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
